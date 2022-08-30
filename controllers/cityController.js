@@ -15,7 +15,34 @@ const cityController = {
                 success: false
             })
         }
+    },
+    
+    read: async(req, res) => {
+        const {id} = req.params
+        try{
+            let city = await City.findOne({_id:id})
+            if(city){
+                res.status(200).json({
+                    message: 'this is the city you search',
+                    response: city,
+                    success: true
+                })
+            } else {
+                res.status(404).json({
+                    message:"couldn't find city",
+                    success: false
+                })
+            }
+    } catch(error){
+        console.log(error);
+        res.status(400).json({
+            message: "error",
+            success: false
+        })
+    }
     }
 }
+
+
 
 module.exports = cityController

@@ -5,7 +5,7 @@ const cityRouter = require('./cityRoutes')
 //req = request, peticion del cliente
 //res = response, mensaje que envia el servidor
 router.get('/', function(req, res, next) {
-  res.json([]);
+  res.render('index', {title: 'Cities'});
 });
 
 router.use('/city', cityRouter)
