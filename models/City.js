@@ -5,7 +5,9 @@ const citiesSchema = new mongoose.Schema({
     country: {type: String, required:true},
     photo: {type: String, required:true},
     population: {type: Number, required:true},
-    foundation: {type: Number, required:true}
+    foundation: {type: Number, required:true},
+    curency: {type: String, required:false},
+    highseason:{type: String, required: false}
 })
 
 

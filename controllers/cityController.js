@@ -43,7 +43,7 @@ const cityController = {
         }
     },
 
-    all: async (res, req) => {
+    all: async (req, res) => {
         let city
         try {
             city = await City.find()
