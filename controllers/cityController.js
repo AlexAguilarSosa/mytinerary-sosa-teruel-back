@@ -10,6 +10,7 @@ const cityController = {
                 success: true
             })
         } catch(error){
+            console.log(error);
             res.status(400).json({
                 message:"couldn't create city",
                 success: false
@@ -33,13 +34,24 @@ const cityController = {
                     success: false
                 })
             }
-    } catch(error){
-        console.log(error);
-        res.status(400).json({
-            message: "error",
-            success: false
-        })
-    }
+        } catch(error){
+            console.log(error);
+            res.status(400).json({
+                message: "error",
+                success: false
+            })
+        }
+    },
+
+    all: async (res, req) => {
+        let city
+        try {
+            city = await City.find()
+            res.json(city)
+        } catch (error) {
+            console.log(error);
+            res.status(500).json()
+        }
     }
 }
 
