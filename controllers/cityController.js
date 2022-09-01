@@ -105,21 +105,28 @@ const cityController = {
     },
 
     filter: async (req, res) => {
-        let country
-        let query = {}
-
-        if(req.query.country){
-            query.country = req.query.country
-        }
+        const query = req.query
+        let cities
 
         if(req.query.city){
-            query.city = req.query.city
+            let regExp = new RegExp(`^${query.city}`)
+            query.city = regExp
         }
 
         try {
-            country = await City.find(query)
-            res.json(country)
-
+            cities = await City.find(query ? query : null)
+            if(cities){
+                res.status(200).json({
+                    message: "found city",
+                    response: cities,
+                    success: true
+            })
+        } else{
+            res.status(404).json({
+                message: "city not found",
+                success: false
+            })
+        }
         } catch (error) {
             console.log(error);
             res.status(500).json()
