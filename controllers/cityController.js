@@ -2,15 +2,16 @@ const City = require('../models/City')
 
 const cityController = {
     create: async(req, res) =>{
-        const {city, country, photo, population, foundation} = req.body 
+        const {city, country, photo, population, foundation, currency, highseason} = req.body 
         try{
-            await new City(req.body).save() //req.body tiene que tener SI O SI todas la variables antes descriptas
+            let city = await new City(req.body).save() //req.body tiene que tener SI O SI todas la variables antes descriptas
             res.status(201).json({
                 message: "city has been created succesfuly",
-                success: true
+                response: city.id,
+                success: true,
             })
         } catch(error){
-            console.log(error);
+            console.log(error)
             res.status(400).json({
                 message:"couldn't create city",
                 success: false
@@ -76,6 +77,7 @@ const cityController = {
                 await City.findByIdAndDelete({_id:id})
                 res.status(200).json({
                     message: "city delete",
+                    response: id,
                     success: true
                 })
             } else {
