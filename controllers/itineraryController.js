@@ -42,6 +42,32 @@ const itineraryController = {
                 success: false
             })
         }
+    },
+
+    destroy: async(req, res) =>{
+        const {id} = req.params
+        try{
+            let itinerary = await Itinerary.findOne({_ide:id})
+            if(city) {
+                await Itinerary.findByIdAndDelete({_id:id})
+                res.status(200).json({
+                    message: "itinerary delete",
+                    response: id,
+                    success: true
+                })
+            } else{
+                res.status(404).json({
+                    message: "couldn't find itinerary",
+                    success: false
+                })
+            }
+        } catch(error){
+            console.log(error)
+            res.status(400).json({
+                message: "error",
+                success: false
+            })
+        }
     }
 }
 
