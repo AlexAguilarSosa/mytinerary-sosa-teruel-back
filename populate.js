@@ -5,9 +5,9 @@ const City = require('./models/City') //importamos los modelos que necesito para
 City.create({
     city: "Mendoza",
     country: "Argentina",
-    photo: "http://localhost:4000",
-    population: "1000000",
-    foundation: "1850",
+    photo: "/img/mendoza.jpg",
+    population: "1075737",
+    foundation: "1561",
     currency: "ARS",
-    highseason: "March-August"
+    highseason: "December-March/May-August"
 })
