@@ -17,6 +17,31 @@ const itineraryController = {
             })
         }
 
+    },
+
+    update: async(req, res) =>{
+        const{id} = req.params
+        try{
+            let itinerary = await Itinerary.findOne({_id:id})
+            if(itinerary){
+                await Itinerary.findByIdAndupdate({_id:id}, req.body)
+                res.status(200).json({
+                    message: "itinerary updated",
+                    success: true
+                })
+            } else {
+                res.status(404).json({
+                    message: "couldn't find itinerary",
+                    success: false
+                })
+            }
+        } catch(error){
+            console.log(error)
+            res.status(400).json({
+                message: "error",
+                success: false
+            })
+        }
     }
 }
 
