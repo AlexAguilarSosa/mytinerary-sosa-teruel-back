@@ -7,7 +7,7 @@ const cityController = {
             let city = await new City(req.body).save() //req.body tiene que tener SI O SI todas la variables antes descriptas
             res.status(201).json({
                 message: "city has been created succesfuly",
-                response: city.id,
+                response: city._id,
                 success: true,
             })
         } catch(error){
